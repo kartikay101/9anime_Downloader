@@ -8,4 +8,4 @@ Before running the repo run :
 
 to get the uget downloader
 
-Then run the downloader.py to get the results
+Then run the anime_downloader.py to get the results

@@ -7,3 +7,5 @@ Before running the repo run :
 *sudo apt-get install uget*
 
 to get the uget downloader
+
+Then run the downloader.py to get the results

@@ -1,7 +1,7 @@
 # @Author: Kartikay Shandil <kartikay101>
 # @Date:   2018-07-21T18:44:16+05:30
-# @Last modified by:   hunter
-# @Last modified time: 2018-07-22T20:15:48+05:30
+# @Last modified by:   kartikay101
+# @Last modified time: 2018-07-22T20:50:15+05:30
 
 
 
@@ -42,7 +42,7 @@ def get_rapid_link(animeurl,quality):
     click_here=browser.find_element_by_class_name("cover")
     click_here.click()
     #waiting for iframe to load
-    time.sleep(1)
+    time.sleep(4)
 
     iframe=browser.find_elements_by_tag_name("iframe")[0]
     browser.switch_to_frame(iframe)
@@ -50,15 +50,22 @@ def get_rapid_link(animeurl,quality):
 
     final_link='this goes to browser'
     elems = browser.find_elements_by_xpath("//a")
-
+    quality_links=[]
     for elem in elems:
         dwnld_link=elem.get_attribute("href")
+        print("All download links"+dwnld_link)
+        quality_links.append(dwnld_link)
         final_link=dwnld_link #in case even 360p does not exist
-        if not get_quality(video_quality) in dwnld_link:
-            video_quality-=1
-        else:
-            final_link=dwnld_link
-            break
+
+    flag=True
+    while quality>=1 and flag:
+        val=get_quality(quality)
+        for link in quality_links:
+            if val in link:
+                final_link=link
+                flag=False
+        quality-=1
+
     print(final_link)
     return final_link
 
@@ -76,9 +83,9 @@ def download_links(final_link):
 
 animeurl=raw_input("Please Enter the URL of the Starting Episode :\n")
 ep_cnt=raw_input("Enter The Number of Episodes To Download (Including Starting Episode) :\n")
-video_quality=input("video quality")
-ep_start=input("starting ep number")
-ep_end=input("ending ep number")
+video_quality=input("video quality:\n")
+ep_start=input("starting ep number:\n")
+ep_end=input("ending ep number:\n")
 
 ep_start-=1; #array starts at 0
 
@@ -96,7 +103,7 @@ for elem in elems:
         cntr=cntr+1
 
 for i in range(ep_start,ep_end):
-    print(all_links[cntr])
+    print(all_links[i])
     download_links(get_rapid_link(all_links[i],video_quality))
 
 browser.close()

@@ -1,7 +1,7 @@
 # @Author: Kartikay Shandil <kartikay101>
 # @Date:   2018-07-21T18:44:16+05:30
 # @Last modified by:   kartikay101
-# @Last modified time: 2018-07-22T20:50:15+05:30
+# @Last modified time: 2018-07-22T22:27:28+05:30
 
 
 
@@ -81,11 +81,18 @@ def download_links(final_link):
     file.write(video.get_attribute('src')+"\n")
     file.close()
 
-animeurl=raw_input("Please Enter the URL of the Starting Episode :\n")
-ep_cnt=raw_input("Enter The Number of Episodes To Download (Including Starting Episode) :\n")
-video_quality=input("video quality:\n")
-ep_start=input("starting ep number:\n")
-ep_end=input("ending ep number:\n")
+
+
+filepath=os.path.realpath(__file__)
+filepath=filepath.replace('/src/populate_links.py','/res/data.txt')
+
+reader=open(filepath,'r')
+
+#getting required details
+animeurl=reader.readline()
+video_quality=int(reader.readline())
+ep_start=int(reader.readline())
+ep_end=int(reader.readline())
 
 ep_start-=1; #array starts at 0
 

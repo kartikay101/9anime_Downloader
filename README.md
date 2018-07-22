@@ -5,8 +5,12 @@ This repo requiers an external downloader agent : uGet, which is freely availabl
 Before running the repo use :
 
 *sudo apt-get install uget*
+*sudo apt-get install python-qt4*
+*sudo pip install selenium*
 
 to get the uget downloader
+the gui api
+and the selenium webdrivers
 
-
-Then run the anime_downloader.py to get the results
+Then run the anime_downloader.py, enter the required details to get the anime downloaded
+ 

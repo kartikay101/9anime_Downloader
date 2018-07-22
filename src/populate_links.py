@@ -1,7 +1,7 @@
 # @Author: Kartikay Shandil <kartikay101>
 # @Date:   2018-07-21T18:44:16+05:30
 # @Last modified by:   kartikay101
-# @Last modified time: 2018-07-22T22:45:05+05:30
+# @Last modified time: 2018-07-22T23:09:49+05:30
 
 
 
@@ -23,6 +23,17 @@ options = Options()
 browser = webdriver.Chrome(driverpath,chrome_options=options)
 browser.get('https://www.9anime.to')
 
+def input_link_clean(inp_link):
+
+    cnt=0
+    res=''
+    for char in inp_link:
+        if char=='/':
+            cnt+=1
+        if cnt==5:
+            break
+        res+=char
+    return res
 
 def get_quality(video_quality):
 
@@ -90,6 +101,7 @@ reader=open(filepath,'r')
 
 #getting required details
 animeurl=reader.readline()
+animeurl=input_link_clean(animeurl)
 video_quality=int(reader.readline())
 ep_start=int(reader.readline())
 ep_end=int(reader.readline())

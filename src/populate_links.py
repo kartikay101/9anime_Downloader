@@ -1,7 +1,7 @@
 # @Author: Kartikay Shandil <kartikay101>
 # @Date:   2018-07-21T18:44:16+05:30
 # @Last modified by:   kartikay101
-# @Last modified time: 2018-07-22T23:09:49+05:30
+# @Last modified time: 2018-07-22T23:58:30+05:30
 
 
 
@@ -18,8 +18,9 @@ driverpath=filepath.replace("/src/populate_links.py","/driver/chromedriver")
 
 
 options = Options()
-#options.add_argument('--headless')
-#options.add_argument('--disable-gpu')
+options.add_argument('--headless')
+options.add_argument('--disable-gpu')
+options.add_argument("--disable-notifications")
 browser = webdriver.Chrome(driverpath,chrome_options=options)
 browser.get('https://www.9anime.to')
 
@@ -33,7 +34,7 @@ def input_link_clean(inp_link):
         if cnt==5:
             break
         res+=char
-    return res
+    return res[:-1]
 
 def get_quality(video_quality):
 
@@ -64,7 +65,7 @@ def get_rapid_link(animeurl,quality):
     quality_links=[]
     for elem in elems:
         dwnld_link=elem.get_attribute("href")
-        print("All download links"+dwnld_link)
+        #print("All download links"+dwnld_link)
         quality_links.append(dwnld_link)
         final_link=dwnld_link #in case even 360p does not exist
 
@@ -77,7 +78,6 @@ def get_rapid_link(animeurl,quality):
                 flag=False
         quality-=1
 
-    print(final_link)
     return final_link
 
 def download_links(final_link):
@@ -117,12 +117,14 @@ all_links=[]
 elems = browser.find_elements_by_xpath("//a[@href]")
 for elem in elems:
     ep_link=elem.get_attribute("href")
+    #print(ep_link)
     if animeurl in ep_link:
         all_links.append(ep_link)
         cntr=cntr+1
 
 for i in range(ep_start,ep_end):
-    print(all_links[i])
+    print("Fetching Episode"+str(i+1))
     download_links(get_rapid_link(all_links[i],video_quality))
+    print("Link Fetched")
 
 browser.close()

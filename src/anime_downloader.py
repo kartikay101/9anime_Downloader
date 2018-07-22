@@ -1,5 +1,13 @@
+# @Author: Deepanshu Maini <mainidishu>
+# @Date:   2018-07-22T23:12:26+05:30
+# @Last modified by:   kartikay101
+# @Last modified time: 2018-07-22T23:53:49+05:30
+
+
+
 import os
 import sys
+import subprocess
 from PyQt4.QtCore import SIGNAL
 from PyQt4.QtGui import (QApplication, QComboBox, QDialog,
         QDialogButtonBox, QFormLayout, QGridLayout, QGroupBox, QHBoxLayout,
@@ -46,7 +54,7 @@ class Form(QDialog):
 
         self.pb = QPushButton()
         self.pb.setObjectName("Download")
-        self.pb.setText("Download") 
+        self.pb.setText("Download")
 
         layout = QFormLayout()
 
@@ -102,13 +110,12 @@ class Form(QDialog):
 	fo2 = open(filepath + 'data.txt','w')
 	fo2.write(url + '\n' + quality + '\n' + episodes1 + '\n' + episodes2 + '\n')
 	fo2.close()
-	filepath1 = filepath.replace('/res/','/src/') 
-	os.system(filepath1 + 'populate_links.py')
-	os.system(filepath1 + 'download_script.py')
+	filepath1 = filepath.replace('/res/','/src/')
+	subprocess.call(['python','populate_links.py'])
+	subprocess.call(['python','download_script.py'])
 
 app = QApplication(sys.argv)
 form = Form()
 form.resize(1000,500)
 form.show()
-app.exec_()
-
+sys.exit(app.exec_())

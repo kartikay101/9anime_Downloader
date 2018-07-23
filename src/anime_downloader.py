@@ -1,7 +1,7 @@
 # @Author: Deepanshu Maini <mainidishu>
 # @Date:   2018-07-22T23:12:26+05:30
 # @Last modified by:   deepanshu
-# @Last modified time: 2018-07-23T21:18:57+05:30
+# @Last modified time: 2018-07-23T22:47:46+05:30
 
 
 
@@ -90,9 +90,6 @@ class Form(QDialog):
         layout.addWidget(self.ql8)
 
         layout.addWidget(self.pb)
-        self.b1 = QPushButton("Play", self)
-        layout.addWidget(self.b1)
-        self.b1.clicked.connect(self.Play)
 
         self.setLayout(layout)
         self.connect(self.pb, SIGNAL("clicked()"),self.button_click)
@@ -130,7 +127,6 @@ class Form(QDialog):
         self.ql.hide()
         self.pb.hide()
         self.le6.hide()
-        self.setStyleSheet("border-image: url(RamRem.jpg); background-repeat: no-repeat;")
 
         filepath = os.path.realpath(__file__)
         filepath = filepath.replace('/src/anime_downloader.py','/res/')
@@ -146,10 +142,7 @@ class Form(QDialog):
         filepath1 = filepath.replace('/res/','/src/')
         subprocess.call(['python','populate_links.py'])
         subprocess.call(['python','download_script.py'])
-
-    def Play(self):
-
-        QSound.play("fly-high.mp3")
+        self.setStyleSheet("border-image: url(2830378.jpg); background-repeat: no-repeat;")
 
 
 app = QApplication(sys.argv)

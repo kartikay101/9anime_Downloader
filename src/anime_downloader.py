@@ -1,7 +1,7 @@
 # @Author: Deepanshu Maini <mainidishu>
 # @Date:   2018-07-22T23:12:26+05:30
-# @Last modified by:   deepanshu
-# @Last modified time: 2018-07-23T22:47:46+05:30
+# @Last modified by:   kartikay101
+# @Last modified time: 2018-07-24T00:57:21+05:30
 
 
 
@@ -53,8 +53,8 @@ class Form(QDialog):
 
         self.ql7 = QLabel("--::It requires RapidVideo Server to be available for downloading::--")
         self.ql9 = QLabel("--::This project is in development phase, giving absurd values will lead to errors::--")
-        self.ql10 = QLabel("--::To exit program completely please exit UGet as well as the application window::--")
-        self.ql11 = QLabel("--::For any issues raise the issue on GitHub (linl in READ.md)::--")
+        self.ql10 = QLabel("--::To exit program completely please exit uGet as well as the application window::--")
+        self.ql11 = QLabel("--::For any issues raise the issue on GitHub (link in README.md)::--")
         self.ql8 = QLabel("\n")
 
         self.pb = QPushButton()
@@ -130,6 +130,7 @@ class Form(QDialog):
 
         filepath = os.path.realpath(__file__)
         filepath = filepath.replace('/src/anime_downloader.py','/res/')
+        image_path=filepath
         fo = open(filepath + 'config.cfg','w')
         fo.write(category + '\n')
         fo.close()
@@ -142,7 +143,7 @@ class Form(QDialog):
         filepath1 = filepath.replace('/res/','/src/')
         subprocess.call(['python','populate_links.py'])
         subprocess.call(['python','download_script.py'])
-        self.setStyleSheet("border-image: url(2830378.jpg); background-repeat: no-repeat;")
+        self.setStyleSheet("border-image: url("+image_path+"bg_img.jpg); background-repeat: no-repeat;")
 
 
 app = QApplication(sys.argv)

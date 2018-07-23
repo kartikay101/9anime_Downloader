@@ -1,7 +1,7 @@
 # @Author: Kartikay Shandil <kartikay101>
 # @Date:   2018-07-21T18:44:16+05:30
 # @Last modified by:   kartikay101
-# @Last modified time: 2018-07-22T23:58:30+05:30
+# @Last modified time: 2018-07-24T00:58:52+05:30
 
 
 
@@ -107,6 +107,8 @@ ep_start=int(reader.readline())
 ep_end=int(reader.readline())
 
 ep_start-=1; #array starts at 0
+
+print("\nVisiting the Given Link.\nThis may take Time, please be patient\n")
 
 browser.get(animeurl)
 

@@ -34,7 +34,7 @@ def input_link_clean(inp_link):
         if cnt==5:
             break
         res+=char
-    return res[:-1]
+    return res
 
 def get_quality(video_quality):
 

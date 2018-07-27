@@ -1,7 +1,7 @@
 # @Author: Kartikay Shandil <kartikay101>
 # @Date:   2018-07-21T18:44:16+05:30
-# @Last modified by:   kartikay101
-# @Last modified time: 2018-07-24T00:58:52+05:30
+# @Last modified by:   hunter
+# @Last modified time: 2018-07-27T17:01:27+05:30
 
 
 
@@ -114,6 +114,13 @@ browser.get(animeurl)
 
 click_here=browser.find_element_by_class_name("cover")
 click_here.click()
+
+main_window=browser.window_handles[0]  # closing the annoying ads
+new_window=browser.window_handles[1]
+browser.switch_to_window(new_window)
+browser.close()
+browser.switch_to_window(main_window)
+
 cntr=0;
 all_links=[]
 elems = browser.find_elements_by_xpath("//a[@href]")
@@ -129,4 +136,5 @@ for i in range(ep_start,ep_end):
     download_links(get_rapid_link(all_links[i],video_quality))
     print("Link Fetched")
 
-browser.close()
+print("Starting download now")
+browser.quit() # closing the browser

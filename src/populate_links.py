@@ -1,7 +1,7 @@
 # @Author: Kartikay Shandil <kartikay101>
 # @Date:   2018-07-21T18:44:16+05:30
-# @Last modified by:   hunter
-# @Last modified time: 2018-07-27T17:01:27+05:30
+# @Last modified by:   kartikay101
+# @Last modified time: 2018-08-12T02:38:15+05:30
 
 
 
@@ -49,7 +49,7 @@ def get_quality(video_quality):
     return video_quality
 
 def get_rapid_link(animeurl,quality):
-
+    animeurl.strip()
     browser.get(animeurl)
     click_here=browser.find_element_by_class_name("cover")
     click_here.click()
@@ -101,7 +101,6 @@ reader=open(filepath,'r')
 
 #getting required details
 animeurl=reader.readline()
-animeurl=input_link_clean(animeurl)
 video_quality=int(reader.readline())
 ep_start=int(reader.readline())
 ep_end=int(reader.readline())
@@ -121,13 +120,17 @@ browser.switch_to_window(new_window)
 browser.close()
 browser.switch_to_window(main_window)
 
+animeurl=animeurl[:-1] # removing the \n from link
 cntr=0;
+flag=False;
 all_links=[]
+clean_link=input_link_clean(animeurl) #removing the last / part
+
 elems = browser.find_elements_by_xpath("//a[@href]")
 for elem in elems:
     ep_link=elem.get_attribute("href")
-    #print(ep_link)
-    if animeurl in ep_link:
+    if animeurl==ep_link or (flag and clean_link in ep_link): # added logic to only download from rapidVideo servers in case other servers exist
+        flag=True;
         all_links.append(ep_link)
         cntr=cntr+1
 

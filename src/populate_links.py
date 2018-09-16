@@ -114,11 +114,11 @@ browser.get(animeurl)
 click_here=browser.find_element_by_class_name("cover")
 click_here.click()
 
-main_window=browser.window_handles[0]  # closing the annoying ads
-new_window=browser.window_handles[1]
-browser.switch_to_window(new_window)
-browser.close()
-browser.switch_to_window(main_window)
+#main_window=browser.window_handles[0]  # closing the annoying ads
+#new_window=browser.window_handles[1]
+#browser.switch_to_window(new_window)
+#browser.close()
+#browser.switch_to_window(main_window)
 
 animeurl=animeurl[:-1] # removing the \n from link
 cntr=0;

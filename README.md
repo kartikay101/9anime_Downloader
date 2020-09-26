@@ -1,3 +1,5 @@
+:no_entry: [DEPRECATED]
+
 #Indian & Australian governments have blocked the RapidVideo Servers, so this piece of code won't work unless you switch the DNS service of your device to open DNS or Google DNS. (Look it up). Once this is done you will be able to access the website and use this code as earlier#
 
 THEY JUST REMOVED THE CAPTCHA AND THE POPUP ADS, maybe beacuse of reduced traffic on their website because of those.
